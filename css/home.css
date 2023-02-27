@@ -1,0 +1,4 @@
+.home {
+  display: none;
+  animation: showPage 1s ease-in-out forwards;
+}
