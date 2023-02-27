@@ -1,0 +1,95 @@
+.table{
+    width: 80%;
+    height: 100%;
+    display: none;
+    align-items: center;
+    flex-direction: column;
+    margin: 120px auto 0px auto;
+}
+
+.tableDiv{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.tableDiv > select{
+    cursor: pointer;
+}
+.tableDiv > select:hover{
+    background-color: var(--lightGrey);
+}
+
+.tableDiv > div > button{
+    background-color: black;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.tableDiv > div > button:hover{
+    background-color: var(--subGrey);
+}
+
+
+table,
+.pagination{
+    width: 100%;
+}
+
+table{
+    margin-top: 25px;
+}
+
+table>thead{
+    border-bottom: 1px solid grey;
+}
+
+table>thead>tr>th,
+table>tbody>tr>td{
+    width: 25%;
+    text-align: left;
+}
+
+.pagination{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 30px auto;
+}
+
+.pagination>button{
+    cursor: pointer;
+    border: none;
+    background-color: white;
+    font-size: 1.1em;
+}
+
+.pagination>button:hover{
+    color: var(--mainGrey);    
+}
+
+.pagination > ul{
+    display: flex;
+}
+
+.pagination > ul>li>a{
+    margin: 0 5px;
+    font-weight: bold;
+}
+
+.pagination > ul>li>a:not(.pgSelected){
+    color: var(--mainColor);
+}
+
+.pgSelected{
+    color: var(--mainGrey);
+    border-bottom: 2px solid var(--mainGrey);
+}
+
+.pagination > ul>li>a:hover{
+    color: var(--mainGrey);
+}
+
