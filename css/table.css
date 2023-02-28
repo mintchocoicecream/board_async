@@ -1,6 +1,5 @@
 .table {
   width: 80%;
-  height: 100%;
   display: none;
   align-items: center;
   flex-direction: column;
@@ -19,7 +18,7 @@
   cursor: pointer;
 }
 
-.tableDiv > div > button {
+.btnBlack {
   background-color: black;
   color: white;
   border: none;
@@ -28,7 +27,7 @@
   border-radius: 5px;
 }
 
-.tableDiv > div > button:hover {
+.btnBlack:hover {
   background-color: var(--subGrey);
 }
 

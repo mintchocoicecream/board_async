@@ -1,0 +1,93 @@
+.write {
+  position: absolute;
+  top: 0;
+  opacity: 1;
+  animation: showWrite 1s ease-in-out forwards;
+  display: none;
+  width: 100%;
+}
+
+@keyframes showWrite {
+  from {
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.showWrite {
+  display: block;
+}
+
+.writeDiv {
+  background-color: white;
+}
+
+.writeDiv > form {
+  border: 2px solid black;
+  padding: 10px 15px;
+  width: 800px;
+  margin: 0 auto;
+  opacity: 0;
+  animation: showForm 1s ease-in-out forwards;
+}
+
+@keyframes showForm {
+  from {
+    transform: translateX(150px);
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.writeDiv > form > div {
+  display: flex;
+  align-items: center;
+  padding: 5px 0;
+}
+
+.writeDiv > form > div:not(:last-child) {
+  justify-content: space-between;
+}
+
+.writeDiv > form > div:last-child {
+  justify-content: center;
+}
+
+.writeDiv > form > div > label {
+  background-color: var(--lightGrey);
+  padding: 5px;
+  width: 100px;
+  display: inline-block;
+}
+.writeDiv > form > div > input {
+  width: 100%;
+  padding: 5px;
+  margin-left: 5px;
+  border-radius: 0;
+  border: none;
+  border-bottom: 1px solid black;
+}
+
+.writeDiv > form > div > textarea {
+  width: 100%;
+  padding: 5px;
+  font-size: 1.1em;
+}
+
+.writeBtns > button {
+  margin: 0 5px;
+  font-weight: bold;
+}
+
+.btnWhite {
+  border: 1px solid black;
+  background-color: white;
+  padding: 8px 12px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+.btnWhite:hover {
+  background-color: var(--lightGrey);
+}

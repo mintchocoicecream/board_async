@@ -12,7 +12,11 @@
       <nav>
         <ul>
           <li><a href="/" id="navHome" class="currentNav">HOME</a></li>
-          <li><a href="/" id="navIntro">☺</a></li>
+          <li>
+            <a href="/" id="navLogo"
+              ><img src="css/imgs/mintchoco01.png" alt="logo"
+            /></a>
+          </li>
           <li><a href="/" id="navBoard">BOARD</a></li>
         </ul>
       </nav>
@@ -28,7 +32,7 @@
             <option value="조회">조회순</option>
           </select>
           <div class="tableWriteBtn">
-            <button>글 작성</button>
+            <button class="btnBlack">글 작성</button>
           </div>
         </div>
         <table>
@@ -83,16 +87,56 @@
           <button>◀</button>
           <ul>
             <li><a href="" class="pgSelected">1</a></li>
-            <li><a href="">2</a></li>
-            <li><a href="">3</a></li>
-            <li><a href="">4</a></li>
-            <li><a href="">5</a></li>
           </ul>
           <button>▶</button>
         </div>
       </div>
+      <div class="write">
+        <div class="writeDiv">
+          <form>
+            <div class="writeName">
+              <label for="writer">작성자</label>
+              <input
+                id="writer"
+                name="writer"
+                type="email"
+                placeholder="example@email.com"
+              />
+            </div>
+            <div class="writePw">
+              <label for="pw">비밀번호</label>
+              <input
+                type="password"
+                name="pw"
+                id="pw"
+                placeholder="***** (5자 이상)"
+              />
+            </div>
+            <div class="writeTitle">
+              <label for="title">제목</label>
+              <input type="text" name="title" id="title" placeholder="제목" />
+            </div>
+            <div class="writeContent">
+              <textarea
+                name="content"
+                id="content"
+                cols="30"
+                rows="15"
+                maxlength="250"
+              ></textarea>
+            </div>
+            <div class="writeBtns">
+              <button class="btnBlack">입력</button>
+              <button class="btnWhite" type="reset">취소</button>
+            </div>
+          </form>
+        </div>
+      </div>
     </div>
-    <footer></footer>
+    <footer>
+      <span>&copy; HyunjeongSeo</span>
+    </footer>
     <script src="js/nav.js"></script>
+    <script src="js/write.js"></script>
   </body>
 </html>
