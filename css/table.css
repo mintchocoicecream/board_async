@@ -18,7 +18,7 @@
   cursor: pointer;
 }
 
-.btnBlack {
+.btnBlack:not(.hideBtn) {
   background-color: black;
   color: white;
   border: none;
@@ -45,14 +45,25 @@ table > thead {
   border-bottom: 1px solid grey;
 }
 
-table > thead > tr > th,
-table > tbody > tr > td {
+table > tbody > tr {
+  cursor: pointer;
+}
+table > tbody > tr:hover {
+  background-color: var(--lightGrey);
+}
+
+table > thead > tr th,
+table > tbody > tr td {
   padding: 8px 0;
   text-align: center;
 }
 
-table > thead > tr > th:nth-child(2),
-table > tbody > tr > td:nth-child(2) {
+table > tbody > tr td > a {
+  color: black;
+}
+
+table > thead > tr th:nth-child(2),
+table > tbody > tr td:nth-child(2) {
   width: 50%;
 }
 

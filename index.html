@@ -56,7 +56,7 @@
           <tbody>
             <tr>
               <td>1</td>
-              <td>제목입니다.</td>
+              <td><a href="#">제목입니다.</a></td>
               <td>김작성</td>
               <td>1</td>
               <td>2023.02.27</td>
@@ -99,14 +99,66 @@
           <button>▶</button>
         </div>
       </div>
+      <div class="detail">
+        <div class="detailDiv">
+          <form>
+            <div class="writeName">
+              <label>작성자</label>
+              <input name="writer" type="email" value="김작성" readonly />
+            </div>
+            <div class="writeTitle">
+              <label>제목</label>
+              <input
+                id="editTitle"
+                type="text"
+                name="title"
+                value="제목입니다"
+                readonly
+              />
+            </div>
+            <div class="writeContent">
+              <textarea
+                id="editContent"
+                name="content"
+                cols="30"
+                rows="15"
+                maxlength="250"
+                readonly
+              ></textarea>
+            </div>
+            <div class="detailBtns">
+              <button class="btnBlack btnEdit">수정</button>
+              <button class="btnBlack btnSave hideBtn">저장</button>
+              <button class="btnGrey btnDel">삭제</button>
+              <button class="btnWhite btnBack" type="reset">뒤로</button>
+            </div>
+          </form>
+          <div class="checkInfo hideCheck">
+            <form>
+              <div>
+                <label for="">이메일</label>
+                <input type="email" />
+              </div>
+              <div>
+                <label for="">비밀번호</label>
+                <input type="password" />
+              </div>
+              <div class="btnChk">
+                <button class="btnBlack btnChkOk">확인</button>
+                <button class="btnWhite btnChkCancel">취소</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
       <div class="write">
         <div class="writeDiv">
           <form>
-            <div class="writeName">
-              <label for="writer">작성자</label>
+            <div class="writeEmail">
+              <label for="writerEmail">이메일</label>
               <input
-                id="writer"
-                name="writer"
+                id="writerEmail"
+                name="writerEmail"
                 type="email"
                 placeholder="example@email.com"
               />
@@ -119,6 +171,10 @@
                 id="pw"
                 placeholder="***** (5자 이상)"
               />
+            </div>
+            <div class="writeName">
+              <label for="writer">작성자</label>
+              <input id="writer" name="writer" type="text" placeholder="이름" />
             </div>
             <div class="writeTitle">
               <label for="title">제목</label>
@@ -133,9 +189,15 @@
                 maxlength="250"
               ></textarea>
             </div>
+            <div>
+              <p>
+                *이메일과 비밀번호는 게시글 수정 및 삭제시 본인확인용으로
+                사용됩니다.
+              </p>
+            </div>
             <div class="writeBtns">
-              <button class="btnBlack">입력</button>
-              <button class="btnWhite" type="reset">취소</button>
+              <button class="btnBlack btnEnter">입력</button>
+              <button class="btnWhite btnCancel" type="reset">취소</button>
             </div>
           </form>
         </div>

@@ -1,10 +1,15 @@
-.write {
+.write,
+.detail {
   position: absolute;
   top: 0;
   opacity: 1;
   animation: showWrite 1s ease-in-out forwards;
   display: none;
   width: 100%;
+}
+
+.detail {
+  align-items: center;
 }
 
 @keyframes showWrite {
@@ -15,15 +20,18 @@
   }
 }
 
-.showWrite {
+.showWrite,
+.showDetail {
   display: block;
 }
 
-.writeDiv {
+.writeDiv,
+.detailDiv {
   background-color: white;
 }
 
-.writeDiv > form {
+.writeDiv > form,
+.detailDiv > form {
   border: 2px solid black;
   padding: 10px 15px;
   width: 800px;
@@ -41,27 +49,62 @@
   }
 }
 
-.writeDiv > form > div {
+.detailDiv {
+  position: relative;
+}
+.detailDiv > .checkInfo:not(.hideCheck) {
+  position: absolute;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  top: 0;
+}
+
+.hideCheck {
+  display: none;
+}
+
+.checkInfo > form {
+  width: 300px;
+  background-color: white;
+  border: 1px solid var(--subGrey);
+  box-shadow: 0.1em 0.1em 0.5em 0.2em var(--lightGrey);
+  padding: 20px 15px;
+}
+
+.writeDiv > form > div,
+.detailDiv > form > div,
+.checkInfo > form > div {
   display: flex;
   align-items: center;
   padding: 5px 0;
 }
 
-.writeDiv > form > div:not(:last-child) {
+.writeDiv > form > div:not(:last-child),
+.detailDiv > form > div:not(:last-child),
+.checkInfo > form > div:not(:last-child) {
   justify-content: space-between;
 }
 
-.writeDiv > form > div:last-child {
+.writeDiv > form > div:last-child,
+.detailDiv > form > div:last-child,
+.checkInfo > form > div:last-child {
   justify-content: center;
 }
 
-.writeDiv > form > div > label {
+.writeDiv > form > div > label,
+.detailDiv > form > div > label,
+.checkInfo > form > div > label {
   background-color: var(--lightGrey);
   padding: 5px;
   width: 100px;
   display: inline-block;
 }
-.writeDiv > form > div > input {
+.writeDiv > form > div > input,
+.detailDiv > form > div > input,
+.checkInfo > form > div > input {
   width: 100%;
   padding: 5px;
   margin-left: 5px;
@@ -70,14 +113,21 @@
   border-bottom: 1px solid black;
 }
 
-.writeDiv > form > div > textarea {
+.writeDiv > form > div > textarea,
+.detailDiv > form > div > textarea {
   width: 100%;
   padding: 5px;
   font-size: 1.1em;
 }
 
-.writeBtns > button {
-  margin: 0 5px;
+.writeDiv > form > div > p {
+  font-size: 0.8em;
+}
+
+.writeBtns > button,
+.detailBtns > button,
+.btnChk > button {
+  margin: 0 3px;
   font-weight: bold;
 }
 
@@ -90,4 +140,19 @@
 }
 .btnWhite:hover {
   background-color: var(--lightGrey);
+}
+
+.btnGrey {
+  border: 1px solid black;
+  background-color: var(--lightGrey);
+  padding: 8px 12px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+.btnGrey:hover {
+  opacity: 0.6;
+}
+
+.hideBtn {
+  display: none;
 }
