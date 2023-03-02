@@ -13,7 +13,7 @@ const btnChkOk=document.querySelector(".btnChkOk");
 const btnChkCancel=document.querySelector(".btnChkCancel");
 const editTitle=document.querySelector("#editTitle");
 const editContent=document.querySelector("#editContent");
-const detailBtn=document.querySelector("tbody>tr>td>a");
+//const detailBtn=document.querySelector("tbody>tr>td>a");
 
 writeBtn.addEventListener("click", function(e){
     e.preventDefault();
@@ -30,23 +30,25 @@ btnBack.addEventListener("click", function(e){
     detailDiv.classList.remove("showDetail");
 });
 
+/*
 detailBtn.addEventListener("click", function(e){
     e.preventDefault();
     detailDiv.classList.add("showDetail");
 })
+*/
 
 btnEdit.addEventListener("click", function(e){
     e.preventDefault();
-    editTitle.removeAttribute("readonly");
-    editContent.removeAttribute("readonly");
+    //editTitle.removeAttribute("readonly");
+    //editContent.removeAttribute("readonly");
     checkInfo.classList.remove("hideCheck");
 });
 
 btnChkOk.addEventListener("click", function(e){
     e.preventDefault();
-    btnEdit.classList.add("hideBtn");
-    btnSave.classList.remove("hideBtn");
-    checkInfo.classList.add("hideCheck");
+    //btnEdit.classList.add("hideBtn");
+    //btnSave.classList.remove("hideBtn");
+    //checkInfo.classList.add("hideCheck");
 });
 
 btnChkCancel.addEventListener("click", function(e){
@@ -60,7 +62,3 @@ btnSave.addEventListener("click", function(e){
     this.classList.add("hideBtn");
     detailDiv.classList.remove("showDetail");
 });
-
-btnDel.addEventListener("click", function(e){
-    e.preventDefault();
-})

@@ -6,6 +6,176 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="style.css" />
     <title>HOME</title>
+    <script text="text/javascript" src="js/jquery-1.12.4.min.js"></script>
+    <script type="text/javascript">
+    	$(function(){
+    		let cnt=0;
+    		$('#navBoard').click(function(){
+    			boardList();
+    			return false;
+    		});
+    		
+    		$(document).on('click', 'tbody>tr a', function(e){
+    			var onDel=false;
+    			var boardno=$(this).parent().parent().children().first().html();
+				
+    			$('.btnSave').click(function(){
+					var param="boardno="+boardno+"&"+$('.detailDiv form').serialize();
+					
+					var url="http://localhost:8080/board/api/edit.json";
+					$.post(url, param, function(){
+						$('#editTitle').attr('readonly', true);
+   						$('#editContent').attr('readonly', true);
+						boardList();
+    				});
+					console.log("hi");
+				});
+ 
+    			
+				$('.btnBack').click(function(){
+					$('#editTitle').attr('readonly', true);
+						$('#editContent').attr('readonly', true);
+						$('.btnSave').addClass('hideBtn');
+						$('.btnEdit').removeClass('hideBtn');
+				});
+				
+				$('.btnEdit').click(function(){
+					onDel=false;
+				});
+				
+				$('.btnDel').click(function(e){
+					e.preventDefault();
+					onDel=true;
+					$('.checkInfo').removeClass("hideCheck");
+				
+				});
+				
+				
+				
+    			
+    			$.getJSON('http://localhost:8080/board/api/detail.json', {boardno:boardno}, function(data){
+    				
+    				$('.detail')
+    					.addClass("showDetail")
+    					.end()
+    					.find('input')
+    						.eq(0).val(data.boardno[0].writer)
+    						.end()
+    						.eq(1).val(data.boardno[0].title)
+    						.end()
+    					.end()
+    					.find('textarea').val(data.boardno[0].content).end();
+    				
+
+    				
+    				
+    				
+
+    				
+    				$('.btnChkOk').click(function(e){
+	   					e.preventDefault();
+	    				var email=$('#chkId').val();
+	   					var password=$('#chkPw').val();
+	   			
+	   					if(email==data.boardno[0].writermail && password==data.boardno[0].password){
+	   						if(onDel==false){
+		   						$('.btnEdit').addClass("hideBtn");
+		   						$('.btnSave').removeClass("hideBtn");
+	   						}else{
+	   							//삭제이벤트
+	   							var param="boardno="+boardno;
+								var url="http://localhost:8080/board/api/del.json";
+	   							$.post(url, param, function(){
+	   								boardList();
+	   								$('.detail').removeClass('showDetail');
+	   		    				});
+	   						}
+		   					$('#editTitle').removeAttr('readonly');
+		   					$('#editContent').removeAttr('readonly');
+	   						$('#chkId').val("");
+		   					$('#chkPw').val("");
+		   					$('.chkMsg > p').html("");
+		   					$('.checkInfo').addClass("hideCheck");
+	   					}else{
+	   						$('.chkMsg > p')
+	   							.html("입력하신 아이디 또는 비밀번호가 일치하지 않습니다.");
+	   						$('.chkMsg > p').css({"color":"tomato","fontSize":"0.8em"});
+	   					}
+	   				});
+    				$('.btnChkCancel').click(function(){
+    					$('#chkId').val("");
+	   					$('#chkPw').val("");
+	   					$('.chkMsg > p').html("");
+    				});
+    				
+    			});
+    		})
+    		
+			
+			$('.tableWriteBtn>button').click(function(){
+				var email=$('#writerEmail').val();
+				var pw=$('#pw').val();
+				var writer=$('#writer').val();
+				var title=$('#title').val();
+				var content=$('#content').val();
+				
+	    		$('.btnEnter').click(function(){
+
+	    			if(email==" "){
+	    				console.log("이메일을 입력해 주세요.");
+	    			}else if(pw==" "){
+	    				console.log("비밀번호를 입력해 주세요.");
+	    			}else if(writer==" "){
+	    				console.log("성함을 입력해 주세요.");
+	    			}else if(title==" "){
+	    				console.log("제목을 입력해 주세요.");
+	    			}else if(content==" "){
+	    				console.log("내용을 입력해 주세요.");
+	    			}else{
+	    				var param=$('.writeDiv form').serialize();
+	    				var url='http://localhost:8080/board/api/add.json';
+	    				$.post(url, param, function(){
+	    					boardList();
+	    					$('.write').removeClass('showWrite');
+	    				})
+	    				
+	    			}
+	    			return false;
+	    		});
+				
+			})
+    		
+
+    		
+    	});
+    	
+    	function boardList(){
+    		$('tbody').empty();
+    		$.ajax({
+    			url: "http://localhost:8080/board/api/board.json",
+    			method: 'get',
+    			dataType: 'json',
+    			success: function(data){
+    				for(value of data.board){
+        				var row=$('<tr/>');
+        				var td=$('<td/>');
+        				$('<td/>').html(value.boardno).appendTo(row);
+        				var atag=$('<a href="#"/>').html(value.title).appendTo(td);
+        				$('<td/>').append(atag).appendTo(row);
+        				$('<td/>').html(value.writer).appendTo(row);
+        				$('<td/>').html(value.views).appendTo(row);
+        				$('<td/>').html(value.writedate).appendTo(row);
+        				row.appendTo('tbody');
+    				}
+    			},
+    			error: function(xhr, status, err){
+    				console.log(status);
+    				console.log("-------------");
+    				console.log(err);
+    			}
+    		});
+    	}
+    </script>
   </head>
   <body>
     <header>
@@ -54,41 +224,6 @@
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td>1</td>
-              <td><a href="#">제목입니다.</a></td>
-              <td>김작성</td>
-              <td>1</td>
-              <td>2023.02.27</td>
-            </tr>
-            <tr>
-              <td>2</td>
-              <td>제목입니다.</td>
-              <td>김작성</td>
-              <td>10</td>
-              <td>2023.02.27</td>
-            </tr>
-            <tr>
-              <td>3</td>
-              <td>제목입니다.</td>
-              <td>박작성</td>
-              <td>1</td>
-              <td>2023.02.27</td>
-            </tr>
-            <tr>
-              <td>4</td>
-              <td>제목입니다.</td>
-              <td>정작성</td>
-              <td>11</td>
-              <td>2023.02.28</td>
-            </tr>
-            <tr>
-              <td>5</td>
-              <td>제목입니다.</td>
-              <td>이작성</td>
-              <td>1</td>
-              <td>2023.02.28</td>
-            </tr>
           </tbody>
         </table>
         <div class="pagination">
@@ -104,7 +239,7 @@
           <form>
             <div class="writeName">
               <label>작성자</label>
-              <input name="writer" type="email" value="김작성" readonly />
+              <input name="writer" type="email" readonly />
             </div>
             <div class="writeTitle">
               <label>제목</label>
@@ -112,13 +247,12 @@
                 id="editTitle"
                 type="text"
                 name="title"
-                value="제목입니다"
                 readonly
               />
             </div>
             <div class="writeContent">
               <textarea
-                id="editContent"
+                id="detailContent"
                 name="content"
                 cols="30"
                 rows="15"
@@ -137,11 +271,14 @@
             <form>
               <div>
                 <label for="">이메일</label>
-                <input type="email" />
+                <input type="email" id="chkId" />
               </div>
               <div>
                 <label for="">비밀번호</label>
-                <input type="password" />
+                <input type="password" id="chkPw"/>
+              </div>
+              <div class="chkMsg">
+              	<p></p>
               </div>
               <div class="btnChk">
                 <button class="btnBlack btnChkOk">확인</button>

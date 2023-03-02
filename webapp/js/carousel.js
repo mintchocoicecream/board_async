@@ -18,7 +18,6 @@ prevBtn.addEventListener("click", function(){
     nextBtn.style.visibility="visible";
     idx-=1;
     carousel.style.transform=`translateX(${-800*idx}px)`;
-    console.log(idx);
 });
 
 nextBtn.addEventListener("click", function(){
@@ -31,5 +30,4 @@ nextBtn.addEventListener("click", function(){
     prevBtn.style.visibility="visible";
     idx+=1;
     carousel.style.transform=`translateX(${-800*idx}px)`;
-    console.log(idx);
 });
